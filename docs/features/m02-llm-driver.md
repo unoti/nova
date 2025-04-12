@@ -65,36 +65,23 @@ This separation provides several advantages:
 4. **Focused Development**: Driver implementers can focus solely on the LLM-specific details
 5. **Testing Flexibility**: Drivers can be tested in isolation from Provider features
 
-## Implementation Strategy
+For this milestone we will be focusing only on the low-level llm driver, not the llm_provider.
 
-1. Define the LLM Driver behavior/protocol with clear specifications
-2. Create a concrete implementation for at least one LLM service (e.g., OpenAI)
-3. Implement the LLM Provider with core cross-cutting capabilities
-4. Build a simple testing implementation of the Driver for development
-5. Add additional Driver implementations as needed
+## Implementation Steps
 
-## Usage Example
+### A1 [x] Defin LLM Driver behavior/protocol with clear specifications
+This has been done in nova/llm/driver.ex.
 
-```elixir
-# Configuration (typically in application config)
-config :nova, :llm,
-  provider: Nova.LLM.Provider,
-  driver: Nova.LLM.Driver.OpenAI,
-  driver_options: [api_key: System.get_env("OPENAI_API_KEY")]
+### A2 [ ] Create a mock llm for use in unit tests and other tests.
+This will have a couple of key capabilities.  By default, it will
+generate a response that is based on the last row of dialog
+fed into it.  So if the last row of text in the dialog is "x"
+then it will return "f(x)".  This makes unit tests easy to read and reason about.
 
-# Simple usage
-{:ok, response} = Nova.LLM.complete("Explain quantum computing in simple terms")
+In addition, it will have the capability to store the next response that is desired,
+which can be fed to it by a unit test.
 
-# Chat conversation
-{:ok, response} = Nova.LLM.chat([
-  %{role: "system", content: "You are a helpful assistant."},
-  %{role: "user", content: "What is the capital of France?"}
-])
 
-# With a specific driver
-{:ok, response} = Nova.LLM.Provider.with_driver(Nova.LLM.Driver.Anthropic, fn driver ->
-  Nova.LLM.chat(driver, messages, model: "claude-3-opus-20240229")
-end)
-```
+### A3. [ ] Create a concrete implementation for at least one LLM service (e.g., OpenAI)
 
-This milestone establishes the foundation for all LLM interactions in Nova, enabling subsequent features to build on these core abstractions.
+### A4. [ ] Implement the LLM Provider with core cross-cutting capabilities
