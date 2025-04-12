@@ -14,22 +14,10 @@ An Elixir library for integrating AI into business workflows. Nova makes it easy
 - Elixir 1.17 or later
 - Erlang/OTP 26 or later
 
-## Installation
-
-Once published to [Hex](https://hex.pm/docs/publish), you can install the package by adding `nova` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:nova, "~> 0.1.0"}
-  ]
-end
-```
-
-For development:
+## Development Installation
 
 ```bash
-git clone https://github.com/yourusername/nova.git
+git clone https://github.com/unoti/nova.git
 cd nova
 mix deps.get
 ```
@@ -54,19 +42,9 @@ mix test test/nova/core/dialog_test.exs
 # Basic example coming soon
 ```
 
-## Documentation
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc):
-
-```bash
-mix docs
-```
-
-Once published, the docs can be found at <https://hexdocs.pm/nova>.
-
 ## Project Structure
 
-Refer to [Project Structure](docs/project_structure.md) for details on how the code is organized.
+See to [Project Structure](docs/project_structure.md) for details on how the code is organized.
 
 ## License
 

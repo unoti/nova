@@ -1,3 +1,78 @@
+defmodule Nova.Entities.Dialog.Role do
+  @moduledoc """
+  Represents who said a message in a dialog.
+  """
+  
+  @type t :: :user | :system | :assistant
+end
+
+defmodule Nova.Entities.Dialog.FunctionCall do
+  @moduledoc """
+  Represents a function call made during a dialog interaction.
+  """
+  
+  defstruct [
+    :function_name,  # Name of the function
+    :parameters,     # Parameters passed to the function
+    :result,         # Result of the function call
+    :completion_id,  # ID of the completion
+    :finish_reason   # Reason for finishing
+  ]
+  
+  @type t :: %__MODULE__{
+    function_name: String.t(),
+    parameters: map(),
+    result: map() | String.t() | nil,
+    completion_id: String.t() | nil,
+    finish_reason: String.t() | nil
+  }
+end
+
+defmodule Nova.Entities.Dialog.RowMetadata do
+  @moduledoc """
+  Optional metadata for a dialog row.
+  Only present for special dialog rows with function calls or other advanced features.
+  """
+  
+  defstruct [
+    :function_calls,  # List of function calls if any were made
+    :hidden,          # Whether this row should be hidden from the user
+    :tokens,          # Token information if available
+    :extra            # Any additional metadata as a map
+  ]
+  
+  @type t :: %__MODULE__{
+    function_calls: [Nova.Entities.Dialog.FunctionCall.t()] | nil,
+    hidden: boolean() | nil,
+    tokens: map() | nil,
+    extra: map() | nil
+  }
+end
+
+defmodule Nova.Entities.Dialog.Row do
+  @moduledoc """
+  Represents one message in a dialog with its metadata.
+  """
+  
+  defstruct [
+    :text,          # What was said
+    :role,          # Who said it (:user, :system, :assistant)
+    :timestamp,     # When it was said
+    :metadata,      # Optional metadata (function calls, etc.)
+    :images,        # Optional images
+    processed: true # Whether this has been processed by the LLM
+  ]
+  
+  @type t :: %__MODULE__{
+    text: String.t(),
+    role: Nova.Entities.Dialog.Role.t(),
+    timestamp: DateTime.t(),
+    metadata: Nova.Entities.Dialog.RowMetadata.t() | nil,
+    images: list() | nil,
+    processed: boolean()
+  }
+end
+
 defmodule Nova.Entities.Dialog do
   @moduledoc """
   A conversation between a user and an LLM.
@@ -60,79 +135,4 @@ defmodule Nova.Entities.Dialog do
   
   defp maybe_filter_by_role(rows, nil), do: rows
   defp maybe_filter_by_role(rows, role), do: Enum.filter(rows, fn row -> row.role == role end)
-end
-
-defmodule Nova.Entities.Dialog.Role do
-  @moduledoc """
-  Represents who said a message in a dialog.
-  """
-  
-  @type t :: :user | :system | :assistant
-end
-
-defmodule Nova.Entities.Dialog.Row do
-  @moduledoc """
-  Represents one message in a dialog with its metadata.
-  """
-  
-  defstruct [
-    :text,          # What was said
-    :role,          # Who said it (:user, :system, :assistant)
-    :timestamp,     # When it was said
-    :metadata,      # Optional metadata (function calls, etc.)
-    :images,        # Optional images
-    processed: true # Whether this has been processed by the LLM
-  ]
-  
-  @type t :: %__MODULE__{
-    text: String.t(),
-    role: Nova.Entities.Dialog.Role.t(),
-    timestamp: DateTime.t(),
-    metadata: Nova.Entities.Dialog.RowMetadata.t() | nil,
-    images: list() | nil,
-    processed: boolean()
-  }
-end
-
-defmodule Nova.Entities.Dialog.FunctionCall do
-  @moduledoc """
-  Represents a function call made during a dialog interaction.
-  """
-  
-  defstruct [
-    :function_name,  # Name of the function
-    :parameters,     # Parameters passed to the function
-    :result,         # Result of the function call
-    :completion_id,  # ID of the completion
-    :finish_reason   # Reason for finishing
-  ]
-  
-  @type t :: %__MODULE__{
-    function_name: String.t(),
-    parameters: map(),
-    result: map() | String.t() | nil,
-    completion_id: String.t() | nil,
-    finish_reason: String.t() | nil
-  }
-end
-
-defmodule Nova.Entities.Dialog.RowMetadata do
-  @moduledoc """
-  Optional metadata for a dialog row.
-  Only present for special dialog rows with function calls or other advanced features.
-  """
-  
-  defstruct [
-    :function_calls,  # List of function calls if any were made
-    :hidden,          # Whether this row should be hidden from the user
-    :tokens,          # Token information if available
-    :extra            # Any additional metadata as a map
-  ]
-  
-  @type t :: %__MODULE__{
-    function_calls: [Nova.Entities.Dialog.FunctionCall.t()] | nil,
-    hidden: boolean() | nil,
-    tokens: map() | nil,
-    extra: map() | nil
-  }
 end
