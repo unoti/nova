@@ -80,7 +80,7 @@ test/nova/llm/drivers/mock_test.exs - Verifies the functionality of the mock dri
 ### A1 [x] Defin LLM Driver behavior/protocol with clear specifications
 This has been done in nova/llm/driver.ex.
 
-### A2 [ ] Create a mock llm for use in unit tests and other tests.
+### A2 [x] Create a mock llm for use in unit tests and other tests.
 This will have a couple of key capabilities.  By default, it will
 generate a response that is based on the last row of dialog
 fed into it.  So if the last row of text in the dialog is "x"
@@ -90,6 +90,7 @@ In addition, it will have the capability to store the next response that is desi
 which can be fed to it by a unit test.
 
 
-### A3. [ ] Create a concrete implementation for at least one LLM service (e.g., OpenAI)
+### A3. [ ] Create a concrete implementation for OpenAI
+
 
 ### A4. [ ] Implement the LLM Provider with core cross-cutting capabilities
