@@ -67,6 +67,14 @@ This separation provides several advantages:
 
 For this milestone we will be focusing only on the low-level llm driver, not the llm_provider.
 
+## Current status
+To understand where we're at with this, read these files:
+lib/nova/entities/dialog.ex - defines data models we're using for chats
+lib/nova/llm/driver.ex  - Defines abstract behavior for the llm driver
+lib/nova/llm/drivers/mock.ex - Defines the mock driver
+test/nova/llm/drivers/mock_test.exs - Verifies the functionality of the mock driver
+
+
 ## Implementation Steps
 
 ### A1 [x] Defin LLM Driver behavior/protocol with clear specifications
