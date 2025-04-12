@@ -10,8 +10,6 @@ nova/
 │   ├── nova.ex                 # Application entry point
 │   └── nova/
 │       ├── core/               # Core business logic 
-│       ├── dialog/             # Dialog-specific modules
-│       │   └── ...
 │       ├── entities/           # Domain models
 |             └── dialog.ex     # Dialog management: chat history
 │       ├── 
