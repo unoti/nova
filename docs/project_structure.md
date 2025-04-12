@@ -12,17 +12,19 @@ nova/
 │       ├── core/               # Core business logic 
 │       ├── dialog/             # Dialog-specific modules
 │       │   └── ...
-│       ├── dialog.ex           # Dialog management
 │       ├── entities/           # Domain models
+|             └── dialog.ex     # Dialog management: chat history
+│       ├── 
 │       └── llm/                # LLM provider integrations
-│           └── ...
+│           └── driver.ex       # LLM driver, lowest level behavior
 │
 ├── test/                       # Tests mirror the lib structure
 │   └── nova/
 │       └── ...
 │
 └── docs/                       # Documentation
-    └── project_structure.md    # This file
+│   └── project_structure.md    # This file
+│   └── features/               # Detailed design specs as we work on features
 ```
 
 ## Philosophy & Rationale
