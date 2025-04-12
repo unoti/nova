@@ -8,25 +8,31 @@ defmodule Nova.MixProject do
       elixir: "~> 1.17",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
+      aliases: aliases(),
       description: description(),
       package: package()
     ]
   end
 
-  # Run "mix help compile.app" to learn about applications.
   def application do
     [
       extra_applications: [:logger]
     ]
   end
 
-  # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # HTTP Client
       {:hackney, "~> 1.20"},
-      # JSON parsing
       {:jason, "~> 1.4"}
+    ]
+  end
+
+  defp aliases do
+    [
+      "test.unit": ["test"],
+      "test.all": ["test --include integration"],
+      "test.integration": ["test --only integration"],
+      "test.openai": ["test test/nova/llm/drivers/openai_test.exs --include skip"]
     ]
   end
 
