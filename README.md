@@ -24,8 +24,29 @@ Nova leverages Elixir's strengths in building distributed, concurrent systems to
 
 ## Status
 
-Nova is currently in active development. We're working on establishing core abstractions and an extensible foundation for enterprise-ready AI integrations.
+Nova is currently in the early design phase. We're iterating on the design and vision documents to establish a solid foundation before implementation begins.
+
+## Design Principles
+
+Nova follows a set of core [design principles](docs/design_principles.md) that guide our development approach. These principles emphasize:
+
+- Separation of business logic from infrastructure code
+- Building abstractions that make complex problems simple
+- Loose coupling and composability for flexibility
+- AI-specific layered design patterns
+
+Understanding these principles will help you grasp the architectural decisions behind Nova.
+
+## Next Steps
+
+1. Review and refine vision and design documents
+2. Establish core architecture and component interfaces
+3. Implement foundational modules for LLM integration
+4. Develop example workflows showing common AI business integration patterns
+5. Ensure clean separation between public components and proprietary business logic
+
+The public Nova library will focus on providing general-purpose AI integration tools, while specialized business logic will be maintained in a separate private repository.
 
 ## License
 
-[License details to be determined]
+Nova is released under the [MIT License](LICENSE).

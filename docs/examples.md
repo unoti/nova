@@ -1,6 +1,6 @@
 # Nova: Examples & Use Cases
 
-This document provides concrete examples of how Nova can be used to build AI-powered business applications.
+This document provides concrete examples of how Nova can be used to build AI-powered business applications, with a focus on supply chain scenarios.
 
 ## Basic Usage Examples
 
@@ -54,10 +54,4 @@ defmodule MyApp.CustomerSupport do
   
   defp customer_support_prompt do
     """
-    You are a helpful customer support assistant for Acme Corp.
-    Our products include: widgets, gadgets, and doodads.
-    
-    When helping customers:
-    - Be friendly and professional
-    - Don't make up information about our products
-    - If you don't know the
+    You are a helpful customer support assistant
